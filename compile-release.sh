@@ -1,0 +1,1 @@
+mxmlc -load-config+=revengeConfig.xml -incremental=true -swf-version=18 -optimize=true -output bin/revenge.swf -static-link-runtime-shared-libraries=true -library-path+=lib -compiler.debug=false src/Main.as

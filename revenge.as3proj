@@ -47,6 +47,7 @@
   <!-- SWC Libraries -->
   <libraryPaths>
     <!-- example: <element path="..." /> -->
+    <element path="lib\flixel-v2.55.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
