@@ -1,7 +1,13 @@
-Making Games with Flixel 2.35
+Making Games with Flixel 2.55
 
 This was a small presentation and code written for the second IGDA meet happening here in Bangalore on March 5th 2010. The idea was to give an introduction to Flixel and how a small platformer with the bare minimum of features can be created fast and easy.
 
 Presentation available here - http://www.slideshare.net/yadurajiv/making-games-with-flixel
 
 Presentation and slide notes available here: http://chronosign.com/projects/making-games-with-flixel [broken]
+
+[Notes]
+
+Use compile-debug.sh or compile-release.sh to quickly compile the project in linux(tested on Ubuntu 12.04 LTS with Flex SDK 3.1)
+
+Thanks to IQAndreas for updating this project to Flixel 2.55 - https://github.com/IQAndreas/flixel
