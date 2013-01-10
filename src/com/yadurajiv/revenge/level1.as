@@ -22,7 +22,7 @@ freely, subject to the following restrictions:
 */
 package com.yadurajiv.revenge
 {
-	import org.flixel.*
+	import org.flixel.*;
 	
 	/**
 	 * ...
@@ -64,7 +64,7 @@ package com.yadurajiv.revenge
 			/**
 			 * fade in from black :P
 			 */
-			FlxG.flash.start(0xff000000, 1);
+			FlxG.flash(0xff000000, 1);
 			
 			/**
 			 * loading a map!
@@ -116,18 +116,19 @@ package com.yadurajiv.revenge
 			/**
 			 * see bounding rects for all objects on screen 
 			 */
-			//FlxG.showBounds = true;
+			//FlxG.visualDebug = true;
 			
 			/**
 			 * the world bounds need to be set for the collision to work properly
 			 */
-			FlxU.setWorldBounds(0, 0, 800, 600, 8);
+			FlxG.worldBounds = new FlxRect(0, 0, 800, 600);
+			FlxG.worldDivisions = 8;
 			
 			/**
 			 * we ask the Flixel camera subsystem to follow the player sprite with a slight lag or not(lerp)
 			 */
-			FlxG.follow(_player, 5);
-
+			FlxG.camera.follow(_player, FlxCamera.STYLE_PLATFORMER);
+			
 		}
 		
 		/**
@@ -139,29 +140,29 @@ package com.yadurajiv.revenge
 			/**
 			 * checks collision with player and the map
 			 */
-			FlxU.collide(_player, _map);
+			FlxG.collide(_player, _map);
 			
 			/**
 			 * if the player overlaps with the exit sprite, then it calls this anonymous function
 			 * and fades the screen to the next state
 			 */
-			FlxU.overlap(_player, _exit, function():void {
-				FlxG.fade.start(0xff000000, 3, function():void { // FlxG.fade.start also takes in a callback which is called after the fade ends!!
-					FlxG.state = new endGame;
+			FlxG.overlap(_player, _exit, function():void {
+				FlxG.fade(0xff000000, 3, function():void { // FlxG.fade.start also takes in a callback which is called after the fade ends!!
+					FlxG.switchState(new endGame);
 				});
 			});
 			
 			/**
-			 * if the player is moving in the y direction and not on the floor, he is jumping for falling
+			 * if the player is moving in the y direction and not on the floor, he is jumping or falling
 			 */
-			if (!_player.velocity.y && !_player.onFloor) {
+			if (!_player.velocity.y && !_player.isTouching(FlxObject.FLOOR)) {
 				_player.play("jump");
 			}
 			
 			/**
 			 * if the player is on the floor and not walking and the last animation has not finished then be idle
 			 */
-			if (_player.onFloor && !_flagWalking && _player.finished) {
+			if (_player.isTouching(FlxObject.FLOOR) && !_flagWalking && _player.finished) {
 				_player.play("idle");
 			}
 			
@@ -170,12 +171,12 @@ package com.yadurajiv.revenge
 			 */
 			if (FlxG.keys.pressed("LEFT")) {
 				_player.velocity.x = -_playerSpeed;
-				_player.facing = FlxSprite.LEFT;
+				_player.facing = FlxObject.LEFT;
 				
 				/**
 				 * if the player is actually moving right and if he is not jumping/falling then you do the walk animaiton
 				 */
-				if (_player.onFloor) {
+				if (_player.isTouching(FlxObject.FLOOR)) {
 					_flagWalking = true;
 					_player.play("walk");
 				}
@@ -189,13 +190,13 @@ package com.yadurajiv.revenge
 			 */
 			if (FlxG.keys.pressed("RIGHT")) {
 				_player.velocity.x = _playerSpeed;
-				_player.facing = FlxSprite.RIGHT;
+				_player.facing = FlxObject.RIGHT;
 				
 				
 				/**
 				 * if the player is actually moving right and if he is not jumping/falling then you do the walk animaiton
 				 */
-				if (_player.onFloor) {
+				if (_player.isTouching(FlxObject.FLOOR)) {
 					_flagWalking = true;
 					_player.play("walk");
 				}
@@ -208,7 +209,7 @@ package com.yadurajiv.revenge
 			 * jump! when you hit Z or Space or UP
 			 */
 			if (FlxG.keys.pressed("Z") || FlxG.keys.pressed("SPACE") || FlxG.keys.pressed("UP")) {
-				if(_player.onFloor) {
+				if(_player.isTouching(FlxObject.FLOOR)) {
 					_player.velocity.y = -_playerJump;
 					_player.play("jump");
 				}

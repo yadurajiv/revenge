@@ -43,7 +43,7 @@ package com.yadurajiv.revenge
 			/**
 			 * fade in to the scene from black
 			 */
-			FlxG.flash.start(0xff000000, 3);
+			FlxG.flash(0xff000000, 3);
 			
 			/**
 			 * show our mouse!
@@ -60,17 +60,25 @@ package com.yadurajiv.revenge
 			/**
 			 * add a button which will take us back to the main menu state
 			 */
-			_btnStart = new FlxButton(137, 195, function():void {
-				FlxG.fade.start(0xff000000, 2, function():void {
-					FlxG.state = new menuMain;
+			_btnStart = new FlxButton(137, 195, "", function():void {
+				FlxG.fade(0xff000000, 2, function():void {
+					FlxG.switchState(new menuMain);
 				});
 			});
 			
 			/**
 			 * load sprites for different button states
 			 */
-			_btnStart.loadGraphic(new FlxSprite(0, 0, img_okUp), new FlxSprite(0, 0, img_okOver));
+			_btnStart.loadGraphic(img_okUp);
 			add(_btnStart);
+			
+			_btnStart.onOver = function():void {
+				_btnStart.loadGraphic(img_okOver);
+			};
+			
+			_btnStart.onOut = function():void {
+				_btnStart.loadGraphic(img_okUp);
+			};
 			
 		}
 		

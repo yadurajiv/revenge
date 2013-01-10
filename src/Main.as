@@ -29,6 +29,7 @@ package
 	 * ...
 	 * @author Yadu Rajiv
 	 */
+	[SWF(backgroundColor="#000000", frameRate="32", width="640", height="480")]
 	public class Main extends FlxGame 
 	{
 		

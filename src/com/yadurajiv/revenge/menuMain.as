@@ -47,7 +47,7 @@ package com.yadurajiv.revenge
 			/**
 			 * fade in from black
 			 */
-			FlxG.flash.start(0xff000000, 3);
+			FlxG.flash(0xff000000, 3);
 			
 			/**
 			 * show the mouse
@@ -80,17 +80,25 @@ package com.yadurajiv.revenge
 			/**
 			 * adding a button with an anon call back function
 			 */
-			_btnStart = new FlxButton(137, 195, function():void {
-				FlxG.fade.start(0xff000000, 2, function():void { // FlxG.fade.start also takes in a function as the thrid param which is called when the fade completes
-					FlxG.state = new level1; // switching states are as simple as assigning a new state class to the FlxG.state variable which holds the current state.
+			_btnStart = new FlxButton(137, 195, "", function():void {
+				FlxG.fade(0xff000000, 2, function():void { // FlxG.fade also takes in a function as the thrid param which is called when the fade completes
+					FlxG.switchState(new level1); // switching states are as simple as calling 'switchState()' with an instance of the new state.
 				});
 			});
 			
 			/**
 			 * we add a couple of sprites to the button to act as normal and mouseover states
 			 */
-			_btnStart.loadGraphic(new FlxSprite(0, 0, img_btnStartUp), new FlxSprite(0, 0, img_btnStartOver));
+			_btnStart.loadGraphic(img_btnStartUp);
 			add(_btnStart);
+			
+			_btnStart.onOver = function():void {
+				_btnStart.loadGraphic(img_btnStartOver);
+			};
+			
+			_btnStart.onOut = function():void {
+				_btnStart.loadGraphic(img_btnStartUp);
+			};
 			
 			/**
 			 * some credit text
