@@ -70,9 +70,9 @@ package com.yadurajiv.revenge
 			 * loading a map!
 			 * The FlxTilemap class takes in a string of numbers and converts them into a map, you can either pass
 			 * it a string or use the built in helper static functions in FlxTilemap to convert a bitmap/image into
-			 * a csv; which is what I'm doing here. I'm second param to loadMap takes in a tilesheet to be used with
+			 * a csv; which is what I'm doing here. The second param to loadMap takes in a tilesheet to be used with
 			 * the tilemap. The fourth and fifth is the width and height of a single tile in the tile sheet. FlxTilemap
-			 * does an auto tiling for you if you want it. This is not on by default and you have to set it by setting the
+			 * does an auto tiling for you if you want it. This is *OFF* by default and you have to set it by setting the
 			 * map.auto to either FlxTilemap.AUTO(for platform friendly tiling) or FlxTilemap.ALT(for the alternate top down tiling)
 			 */
 			_map = new FlxTilemap();
