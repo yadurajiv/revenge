@@ -11,3 +11,5 @@ Presentation and slide notes available here: http://chronosign.com/projects/maki
 Use compile-debug.sh or compile-release.sh to quickly compile the project in linux(tested on Ubuntu 12.04 LTS with Flex SDK 3.1)
 
 Thanks to IQAndreas for updating this project to Flixel 2.55 - https://github.com/IQAndreas/flixel
+
+A port of this game to HaxeFlixel can be found here - http://haxeflixel.com/demos/Revenge/
